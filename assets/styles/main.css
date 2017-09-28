@@ -1616,7 +1616,6 @@ header li {
   font-family: 'Lato';
   font-size: .9em;
   line-height: 52px;
-  color: white;
   color: #dbdbda;
   letter-spacing: .06em;
   cursor: pointer;
@@ -1624,7 +1623,12 @@ header li {
   transition: color .2s;
 }
 
-.nav-item:hover {
+.nav-item a {
+  color: #dbdbda;
+}
+
+.nav-item:hover, .nav-item:focus,
+.nav-item a:hover, .nav-item a:focus {
   color: #696966;
 }
 
@@ -1652,6 +1656,7 @@ header li {
   height: 0;
   overflow: hidden;
   opacity: 0;
+  display: none;
   text-align: right;
   -webkit-transition: opacity .3s;
   transition: opacity .3s;
@@ -1665,14 +1670,27 @@ header li {
   padding-left: 12px;
   background-color: #303030;
   border-bottom: 1px solid #565656;
+  line-height: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  text-align: left;
 }
 
 .nav-events {
   width: 180px;
 }
 
-.nav-dropdown:hover .dropdown-content {
+.nav-dropdown:hover .dropdown-content,
+.nav-dropdown:focus .dropdown-content {
   height: auto;
+  display: block;
   opacity: 1;
 }
 
@@ -2421,10 +2439,13 @@ h1 {
 .Team-User-Nav {
   width: 80%;
   height: 36px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
   clear: both;
   text-align: left;
+}
+
+.Team-User-Nav menuitem {
+  cursor: pointer;
 }
 
 .Team-User-Nav p {
@@ -3301,18 +3322,6 @@ html[xmlns] .flexslider .slides {
   opacity: 1;
 }
 
-@media screen and (max-width: 1100px) {
-  .Projects-slider .flex-control-nav {
-    right: 4%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .Projects-slider .flex-control-nav {
-    right: 2%;
-  }
-}
-
 #Community-Flickr .flex-direction-nav a {
   /*		display: initial;
 		width: initial;
@@ -3475,6 +3484,10 @@ body.microsoft .GetInvolved h3 {
   font-family: 'SegoeUI', 'Open Sans', sans-serif;
 }
 
+body.microsoft a {
+  color: #0078d7;
+}
+
 body.microsoft header,
 body.microsoft #Primary,
 body.microsoft .footer-mm {
@@ -3515,6 +3528,16 @@ body.microsoft section#Primary .video {
   height: 315px;
   width: 560px;
   position: relative;
+  max-width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+body.microsoft section#Primary .video .videoPlaceholder {
+  height: 100%;
+  min-width: 100%;
+  max-width: none;
 }
 
 body.microsoft section#Primary .video .play {
@@ -3578,6 +3601,7 @@ body.microsoft section.Current-Projects .HOT-Container {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  overflow: hidden;
 }
 
 body.microsoft section.Current-Projects .HOT-Container h3 {
@@ -3593,15 +3617,19 @@ body.microsoft section.Current-Projects .HOT-Container p {
 }
 
 body.microsoft section.Current-Projects .HOT-Map {
-  height: 200px;
+  height: 250px;
   margin-left: auto;
   margin-right: auto;
-  width: 400px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #EEEEEE;
 }
 
 body.microsoft section.Current-Projects .HOT-Progress {
   background-color: #333;
   height: 5px;
+  margin: 10px 0;
 }
 
 body.microsoft section.Current-Projects .HOT-Progress:before {
@@ -3689,7 +3717,7 @@ body.microsoft section.Get-Started .left div {
 }
 
 body.microsoft section.Event {
-  background-image: url("/partners/assets/graphics/msft/event.jpg");
+  background-image: url("/assets/graphics/msft/event.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -3882,6 +3910,60 @@ body.microsoft .flex-control-paging li a {
 
 body.microsoft .flex-control-paging li a.flex-active {
   background-color: white;
+}
+
+@media screen and (max-width: 1024px) {
+  body.microsoft section#Primary .Primary_Container {
+    width: 80%;
+  }
+  body.microsoft section.Get-Started .Primary_Container {
+    width: 80%;
+  }
+  body.microsoft section.Current-Projects .HOT-Container {
+    width: 60%;
+  }
+  body.microsoft section.Current-Projects .flexslider .flex-direction-nav .flex-prev,
+  body.microsoft section.Current-Projects .flexslider:hover .flex-direction-nav .flex-prev {
+    left: 10%;
+  }
+  body.microsoft section.Current-Projects .flexslider .flex-direction-nav .flex-next,
+  body.microsoft section.Current-Projects .flexslider:hover .flex-direction-nav .flex-next {
+    right: 10%;
+  }
+  body.microsoft section.Log-Time .Primary_Container {
+    width: 80%;
+  }
+  body.microsoft section.Community .Community-Container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  body.microsoft section#Primary .Primary_Container {
+    width: calc(100% - 40px);
+  }
+  body.microsoft section.Get-Started .Primary_Container {
+    width: calc(100% - 40px);
+  }
+  body.microsoft section.Current-Projects .HOT-Container {
+    width: calc(100% - 80px);
+  }
+  body.microsoft section.Current-Projects .flexslider .flex-direction-nav .flex-prev,
+  body.microsoft section.Current-Projects .flexslider:hover .flex-direction-nav .flex-prev {
+    left: 0;
+  }
+  body.microsoft section.Current-Projects .flexslider .flex-direction-nav .flex-next,
+  body.microsoft section.Current-Projects .flexslider:hover .flex-direction-nav .flex-next {
+    right: 13px;
+  }
+  body.microsoft section.Log-Time .Primary_Container {
+    width: calc(100% - 40px);
+  }
+  body.microsoft section.Community .Community-Container {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
